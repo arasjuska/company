@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,12 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Guest routes
+Route::view('/', 'welcome');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Auth routes
+Route::group(['middleware'=> 'auth'], function () {
+    Route::view('/dashboard', 'dashboard')->name('dashboard');
+    Route::resource('companies', CompanyController::class);
+});
 
 require __DIR__.'/auth.php';
