@@ -21,7 +21,7 @@ class CompanyFactory extends Factory
             'name' => $this->faker->unique()->company(),
             'email' => $this->faker->email(),
             'address' => $this->faker->address(),
-            'logo' => $this->faker->imageUrl(100, 100),
+            'logo' => 'no_image.png',
             'user_id' => User::all()->random()->id
         ];
     }

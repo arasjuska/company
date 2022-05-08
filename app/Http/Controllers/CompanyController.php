@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCompanyRequest;
 use App\Models\Company;
+use App\Services\StoreImage;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -14,7 +16,7 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::paginate(10);
+        $companies = Company::orderBy('created_at', 'desc')->paginate(10);
 
         return view('companies.index', compact('companies'));
     }
@@ -35,9 +37,17 @@ class CompanyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCompanyRequest $request, StoreImage $logo)
     {
-        //
+        $validated = $request->validated();
+        $validated['user_id'] = auth()->user()->id;
+        $validated['address'] = $request['address'];
+
+        $company = Company::create($validated);
+
+        $logo->save($request, $company);
+
+        return  redirect()->route('companies.index')->with('success', 'Company was created');
     }
 
     /**

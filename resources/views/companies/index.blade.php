@@ -9,6 +9,19 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
+                    <div class="mb-4 flex justify-between items-center">
+                        <div>
+                            <a href="{{ route('companies.create') }}"
+                               class="px-4 py-2 bg-sky-100 hover:bg-sky-200 border border-transparent rounded-md font-semibold text-xs uppercase tracking-widest">
+                                {{ __('New Company') }}
+                            </a>
+                        </div>
+                        @if(session('success'))
+                        <div class="px-4 py-2 bg-green-500 text-white rounded">
+                            {{ session('success') }}
+                        </div>
+                        @endif
+                    </div>
                     <div class="overflow-x-auto">
                         <x-table>
                             <x-slot name="head">
@@ -23,7 +36,7 @@
                                 @foreach ($companies as $company)
                                     <tr>
                                         <x-table.td>
-                                            <img class="w-20" src="{{ $company->logo }}" alt="{{ $company->name }}">
+                                            <img class="w-20" src="{{ asset('storage/logos/' . $company->logo) }}" alt="{{ $company->name }}">
                                         </x-table.td>
                                         <x-table.td>{{ $company->name }}</x-table.td>
                                         <x-table.td>{{ $company->email }}</x-table.td>

@@ -22,28 +22,28 @@
                                   class="grid gap-6 grid-cols-1 mx-auto">
                                 @csrf
                                 <div class="md:col-span-2">
-                                    <x-label for="title">{{ __('Name') }}</x-label>
+                                    <x-label for="name">{{ __('Name') }}</x-label>
                                     <x-input type="text"
                                              name="name"
                                              class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"></x-input>
                                 </div>
 
                                 <div class="md:col-span-2">
-                                    <label for="email">{{ __('Email') }}</label>
+                                    <x-label for="email">{{ __('Email') }}</x-label>
                                     <x-input type="email"
                                              name="email"
                                              class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"></x-input>
                                 </div>
 
                                 <div class="md:col-span-2">
-                                    <label for="address">{{ __('Address') }}</label>
+                                    <x-label for="address">{{ __('Address') }}</x-label>
                                     <x-input type="text"
                                              name="address"
                                              class="h-10 border mt-1 rounded px-4 w-full bg-gray-50"></x-input>
                                 </div>
 
                                 <div class="md:col-span-2">
-                                    <label for="logo">{{ __('Logo') }}</label>
+                                    <x-label for="logo">{{ __('Logo') }}</x-label>
                                     <input type="file"
                                            name="logo"
                                            class="w-full mt-1 mb-4"/>
